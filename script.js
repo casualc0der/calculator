@@ -10,6 +10,7 @@ let logicAnswer;
 let statusRegister = ""
 let accumulator = 0;
 let typingInProcess = false;
+let operationInProcess = false
 
 
 const inputLength = 8
@@ -71,16 +72,15 @@ function clearScreentext() {
 
 }
 
-
-
-
 function leftSideOfEquation(numberString, operator) {
 //convert string to number and store the operator ready for
 //retrival by equals
 
+
 xRegister = parseInt(numberString)
 document.getElementById("screenText").innerHTML = xRegister
 typingInProcess = true;
+
 
 if(yRegister === undefined) {
     yRegister = xRegister
@@ -88,19 +88,38 @@ if(yRegister === undefined) {
     
     return
 }
-else
-{
-        statusRegister = operator
-        console.log(`${xRegister} ${statusRegister} ${yRegister}`)
+
+//this is the logic required to finish the calc!! 
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+if(operationInProcess === false) {
+        
         logicAnswer = operate(yRegister, xRegister, statusRegister)
+        statusRegister = operator
+        operationInProcess = true;
+}
+else if(operationInProcess === true) {
+        logicAnswer = operate(yRegister, xRegister, statusRegister)
+        statusRegister = operator
+        
+
+}
+      
+    //    console.log(`${xRegister} ${statusRegister} ${yRegister}`)
+        
+        ///////////////
+       
         yRegister = logicAnswer;
         document.getElementById("screenText").innerHTML = yRegister;
-    
-
+        operationInProcess = false
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
+//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 }
 
-
-}
 
 function operate(x, y, operator) {
    
