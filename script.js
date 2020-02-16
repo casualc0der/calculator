@@ -42,6 +42,37 @@ for(let operator of operators) {
 //FUNCTIONAL -- DO NOT MODIFY!!!!!!
 //update the string of numbers + update the screen
 function modifyScreenText(num) {
+
+    if(screenText.includes('.')) {
+        if(num === '.') {
+            if(operationInProcess === true)
+            {
+                clearScreentext()
+                
+            }
+            else{
+                num = ''
+                console.log(screenText)
+
+            }
+
+          
+
+
+            }
+           
+        }
+    
+
+    if(screenText === '' && num === '.') {
+        num = '0.'
+    }
+
+    if(screenText === '0' && num === '0') {
+        return;
+    }
+
+
     if(screenText.length > inputLength) {
         
         if(operationInProcess === false) {
@@ -117,7 +148,7 @@ if(yRegister === undefined) {
 if (operationInProcess === true) {
 
     statusRegister = operator
-    document.getElementById("screenText").innerHTML = yRegister;
+    document.getElementById("screenText").innerHTML = roundToTwo(yRegister);
     return;
 
 }
@@ -126,7 +157,7 @@ else if(operationInProcess === false) {
     logicAnswer = operate(yRegister, xRegister, statusRegister)
     statusRegister = operator
     yRegister = parseFloat(logicAnswer);
-    document.getElementById("screenText").innerHTML = yRegister;
+    document.getElementById("screenText").innerHTML = roundToTwo(yRegister);
     operationInProcess = true
 
 }
@@ -135,15 +166,28 @@ else if(operationInProcess === false) {
 
 function equality() {
 
+
     if(xRegister === undefined || yRegister === undefined || statusRegister === undefined) {
         return;
     }
   
-    let answer = operate(yRegister, parseFloat(screenText), statusRegister);
+    let answer = roundToTwo(parseFloat(operate(yRegister, parseFloat(screenText), statusRegister)));
     console.log(answer)
 
+    if (isNaN(answer)) {
+        document.getElementById("screenText").innerHTML = 'Error'
+        xRegister = undefined;
+        yRegister = undefined;
+        inProcess = false;
+        statusRegister = ""
+        accumulator = 0;
+        return;
 
-    document.getElementById("screenText").innerHTML = roundToTwo(answer);
+    }
+
+
+
+    document.getElementById("screenText").innerHTML = answer;
     yRegister = answer;
     operationInProcess = true;
 

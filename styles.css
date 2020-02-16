@@ -1,3 +1,8 @@
+body {
+
+    background-color: black;
+}
+
 .calculator {
 
     height: 600px;
@@ -12,10 +17,13 @@
 
     height: 100px;
     width: 100%;
-    font-size: xx-large;
+    font-size: 300%;
+    text-align: right;
+    padding-top: 10px;
+    color: cornsilk;
     
 
-    background-color: darkgrey;
+    /* background-color: darkgrey; */
 }
 
 .keypad {
@@ -33,7 +41,7 @@
 button {
     height: 100%;
     width: 100%;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     border-width: 1px;
     outline-style: inherit;
     /* ACCESIBILITY! */
@@ -128,6 +136,10 @@ button {
     grid-row-start: 2;
 }
 
+#operator {
+    background-color: coral;
+}
+
 .divide {
     grid-column-start: 4;
     grid-column-end: 4;
@@ -170,10 +182,15 @@ button {
 }
 
 .clear{
-
+   
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
+}
+
+#clear {
+
+    background-color:grey;
 }
 
 .percent{
@@ -183,11 +200,20 @@ button {
     grid-row-start: 1;
 }
 
+#percent {
+
+    background-color: grey;
+}
+
 .absolute {
 
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
+}
+
+#absolute {
+    background-color: grey;
 }
 
 /* #endregion */
