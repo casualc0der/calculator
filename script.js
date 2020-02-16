@@ -42,7 +42,8 @@ function modifyScreenText(num) {
     }
     if(typingInProcess === false) {
         screenText += num
-        document.getElementById("screenText").innerHTML = screenText  
+        document.getElementById("screenText").innerHTML = screenText
+        operationInProcess = false;  
 
     }
     else 
@@ -51,6 +52,7 @@ function modifyScreenText(num) {
         screenText += num
         document.getElementById("screenText").innerHTML = screenText
         typingInProcess = false;
+        operationInProcess = false;
     }
        
 }
@@ -82,6 +84,7 @@ document.getElementById("screenText").innerHTML = xRegister
 typingInProcess = true;
 
 
+
 if(yRegister === undefined) {
     yRegister = xRegister
     statusRegister = operator
@@ -94,26 +97,28 @@ if(yRegister === undefined) {
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
-if(operationInProcess === false) {
-        
-        logicAnswer = operate(yRegister, xRegister, statusRegister)
-        statusRegister = operator
-        operationInProcess = true;
-}
-else if(operationInProcess === true) {
-        logicAnswer = operate(yRegister, xRegister, statusRegister)
-        statusRegister = operator
-        
+   
+if (operationInProcess === true) {
+
+    statusRegister = operator
+    document.getElementById("screenText").innerHTML = yRegister;
+    return;
+    
+
+
 
 }
-      
-    //    console.log(`${xRegister} ${statusRegister} ${yRegister}`)
-        
-        ///////////////
-       
-        yRegister = logicAnswer;
-        document.getElementById("screenText").innerHTML = yRegister;
-        operationInProcess = false
+else if(operationInProcess === false) {
+
+    logicAnswer = operate(yRegister, xRegister, statusRegister)
+    yRegister = logicAnswer;
+    document.getElementById("screenText").innerHTML = yRegister;
+    operationInProcess = true
+
+}
+
+
+   
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
