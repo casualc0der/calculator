@@ -1,13 +1,25 @@
 body {
 
-    background-color: black;
+    background-color: #1C1C1C;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+
+    font-size: large;
+    text-align: center;
+    color: #505050;;
+    
 }
 
 .calculator {
 
     height: 600px;
     max-width: 400px;
-    border-style: solid;
+    /* border-style: solid; */
+    /* margin-left: 50px;
+    margin-top: 100px; */
+    
 
     /* background-color: blueviolet; */
 }
@@ -18,9 +30,8 @@ body {
     height: 100px;
     width: 100%;
     font-size: 300%;
-    text-align: right;
-    padding-top: 10px;
-    color: cornsilk;
+    text-align: center;
+    color: white;
     
 
     /* background-color: darkgrey; */
@@ -31,7 +42,7 @@ body {
     display: grid;
     width: 100%;
     height: 500px;
-    background-color: black;
+    background-color: #1C1C1C;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     justify-items: stretch;
@@ -39,32 +50,53 @@ body {
 }
 
 button {
-    height: 100%;
-    width: 100%;
-    /* border-radius: 50px; */
-    border-width: 1px;
-    outline-style: inherit;
+    height: 90%;
+    width: 90%;
+    border-radius: 50px;
+    border: none;
+    outline-style: none;
     /* ACCESIBILITY! */
-    outline-width: thick;
-    background-color: darkslategray;
+    background-color: #505050;
     color: white;
-    font-size: x-large;
+    font-size: xx-large;
 
 }
 
-/* .buttonclick {
-    height: 100%;
-    width: 100%;
-    border-radius: 50px;
-    border-width: 0;
-    outline-style: inherit;
-    ACCESIBILITY!
-    outline-width: thick;
-    background-color: red;
-    color: white;
-    font-size: x-large;
+button:hover {
+    background-color:#7e7e7e;
+    cursor: pointer;
+}
 
-} */
+.social {
+
+    background-color: #1C1C1C;
+    width: 100%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    
+}
+
+#socialheading {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+}
+
+#githublogo {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    
+    
+}
+
+#githublogo:hover {
+
+    cursor: pointer;
+}
 
 /* #region style calculator keys CSS grid*/
 .zero {
@@ -72,6 +104,7 @@ button {
     grid-column-end: 3;
     grid-row-start: 5;
 }
+
 
 
 .one {
@@ -137,7 +170,11 @@ button {
 }
 
 #operator {
-    background-color: coral;
+    background-color: #FF9500;
+}
+
+#operator:hover {
+    background-color: rgb(252, 195, 114);
 }
 
 .divide {
@@ -190,7 +227,13 @@ button {
 
 #clear {
 
-    background-color:grey;
+    background-color:#D4D4D2;
+    color: black;
+}
+#clear:hover {
+
+    background-color:rgb(233, 233, 233);
+    color: black;
 }
 
 .percent{
@@ -202,7 +245,13 @@ button {
 
 #percent {
 
-    background-color: grey;
+    background-color: #D4D4D2;
+    color: black;
+}
+#percent:hover {
+
+    background-color: rgb(233, 233, 233);
+    color: black;
 }
 
 .absolute {
@@ -213,7 +262,13 @@ button {
 }
 
 #absolute {
-    background-color: grey;
+    background-color: #D4D4D2;
+    color: black;
+}
+
+#absolute:hover {
+    background-color: rgb(233, 233, 233);
+    color: black;
 }
 
 /* #endregion */

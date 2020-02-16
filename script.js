@@ -13,7 +13,7 @@ let statusRegister = ""
 let defaultText = "0"
 let accumulator = 0;
 let typingInProcess = false;
-let operationInProcess = false
+let operationInProcess = false;
 
 
 const inputLength = 8
@@ -47,7 +47,8 @@ function modifyScreenText(num) {
         if(num === '.') {
             if(operationInProcess === true)
             {
-                clearScreentext()
+                clearScreentext();
+                num = '0.'
                 
             }
             else{
@@ -55,10 +56,6 @@ function modifyScreenText(num) {
                 console.log(screenText)
 
             }
-
-          
-
-
             }
            
         }
@@ -68,7 +65,8 @@ function modifyScreenText(num) {
         num = '0.'
     }
 
-    if(screenText === '0' && num === '0') {
+    if(screenText === '' && num === '0') {
+        num = '0.'
         return;
     }
 
@@ -137,11 +135,6 @@ if(isNaN(xRegister)){
 document.getElementById("screenText").innerHTML = xRegister
 typingInProcess = true;
 
-
-
-
-
-
 if(yRegister === undefined) {
     yRegister = xRegister
     statusRegister = operator
@@ -184,8 +177,9 @@ function equality() {
         document.getElementById("screenText").innerHTML = 'Error'
         xRegister = undefined;
         yRegister = undefined;
-        inProcess = false;
+        operationInProcess = true;
         statusRegister = ""
+        screenText = ""
         accumulator = 0;
         return;
 
@@ -225,3 +219,5 @@ function operate(x, y, operator) {
 function roundToTwo(num) {    
     return +(Math.round(num + "e+7")  + "e-7");
 }
+
+
