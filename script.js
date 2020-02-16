@@ -21,7 +21,7 @@ clear.addEventListener("click", () => clearAllLogic());
 
 //process the equation
 
-equals.addEventListener("click", () => operate(xRegister, yRegister, statusRegister));
+equals.addEventListener("click", () => equality());
 
 //add an event listener to each button, returning the innerHTML
 for(let operand of operands) {
@@ -70,6 +70,7 @@ function clearScreentext() {
     yRegister = undefined;
     inProcess = false;
     statusRegister = ""
+    accumulator = 0;
     document.getElementById("screenText").innerHTML = screenText
 
 }
@@ -88,6 +89,7 @@ typingInProcess = true;
 if(yRegister === undefined) {
     yRegister = xRegister
     statusRegister = operator
+    operationInProcess = true;
     
     return
 }
@@ -109,8 +111,9 @@ if (operationInProcess === true) {
 
 }
 else if(operationInProcess === false) {
-
+    // statusRegister = operator
     logicAnswer = operate(yRegister, xRegister, statusRegister)
+    statusRegister = operator
     yRegister = logicAnswer;
     document.getElementById("screenText").innerHTML = yRegister;
     operationInProcess = true
@@ -125,7 +128,19 @@ else if(operationInProcess === false) {
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 }
 
+function equality() {
 
+  
+    let answer = operate(yRegister, parseInt(screenText), statusRegister);
+
+    document.getElementById("screenText").innerHTML = answer;
+    yRegister = answer;
+    console.log(`${yRegister}${xRegister}${statusRegister}`)
+    operationInProcess = true;
+
+    
+  
+}
 function operate(x, y, operator) {
    
 
