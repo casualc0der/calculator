@@ -130,8 +130,14 @@ function leftSideOfEquation(numberString, operator) {
 
 
 xRegister = parseFloat(numberString)
+
+if(isNaN(xRegister)){
+    return
+}
 document.getElementById("screenText").innerHTML = xRegister
 typingInProcess = true;
+
+
 
 
 
@@ -217,5 +223,5 @@ function operate(x, y, operator) {
 }
 
 function roundToTwo(num) {    
-    return +(Math.round(num + "e+10")  + "e-10");
+    return +(Math.round(num + "e+7")  + "e-7");
 }
