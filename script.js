@@ -38,7 +38,20 @@ for(let operator of operators) {
 //update the string of numbers + update the screen
 function modifyScreenText(num) {
     if(screenText.length > inputLength) {
-        return
+        
+        if(operationInProcess === false) {
+
+            return
+        }
+        else {
+            clearScreentext();
+            document.getElementById("screenText").innerHTML = screenText
+            typingInProcess = false;
+            operationInProcess = false;
+
+        }
+        
+        
     }
     if(typingInProcess === false) {
         screenText += num
@@ -86,6 +99,7 @@ typingInProcess = true;
 
 
 
+
 if(yRegister === undefined) {
     yRegister = xRegister
     statusRegister = operator
@@ -93,6 +107,8 @@ if(yRegister === undefined) {
     
     return
 }
+
+
 
 //this is the logic required to finish the calc!! 
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
@@ -105,9 +121,6 @@ if (operationInProcess === true) {
     statusRegister = operator
     document.getElementById("screenText").innerHTML = yRegister;
     return;
-    
-
-
 
 }
 else if(operationInProcess === false) {
@@ -119,9 +132,7 @@ else if(operationInProcess === false) {
     operationInProcess = true
 
 }
-
-
-   
+  
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
@@ -130,6 +141,9 @@ else if(operationInProcess === false) {
 
 function equality() {
 
+    if(xRegister === undefined || yRegister === undefined || statusRegister === undefined) {
+        return;
+    }
   
     let answer = operate(yRegister, parseInt(screenText), statusRegister);
 
@@ -162,10 +176,3 @@ function operate(x, y, operator) {
     }
     
 }
-
-
-
-
-
-
-
