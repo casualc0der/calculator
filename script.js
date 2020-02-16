@@ -4,10 +4,13 @@ const operands = keypad.querySelectorAll("#operand");
 const operators = keypad.querySelectorAll("#operator");
 const equals = document.getElementById("equals");
 const clear = document.getElementById("clear");
+const point = document.getElementById("point");
+
 let xRegister;
 let yRegister;
 let logicAnswer;
 let statusRegister = ""
+let defaultText = "0"
 let accumulator = 0;
 let typingInProcess = false;
 let operationInProcess = false
@@ -15,13 +18,15 @@ let operationInProcess = false
 
 const inputLength = 8
 var screenText = "";
-
+document.getElementById("screenText").innerHTML = defaultText
 //clear screen text
 clear.addEventListener("click", () => clearAllLogic());
 
 //process the equation
 
 equals.addEventListener("click", () => equality());
+
+point.addEventListener("click", () => modifyScreenText(point.innerHTML))
 
 //add an event listener to each button, returning the innerHTML
 for(let operand of operands) {
@@ -77,14 +82,14 @@ function clearScreentext() {
     document.getElementById("screenText").innerHTML = screenText
 }
 
- function clearAllLogic() {
+function clearAllLogic() {
     screenText = ""
     xRegister = undefined;
     yRegister = undefined;
     inProcess = false;
     statusRegister = ""
     accumulator = 0;
-    document.getElementById("screenText").innerHTML = screenText
+    document.getElementById("screenText").innerHTML = defaultText
 
 }
 
@@ -93,7 +98,7 @@ function leftSideOfEquation(numberString, operator) {
 //retrival by equals
 
 
-xRegister = parseInt(numberString)
+xRegister = parseFloat(numberString)
 document.getElementById("screenText").innerHTML = xRegister
 typingInProcess = true;
 
@@ -108,13 +113,6 @@ if(yRegister === undefined) {
     return
 }
 
-
-
-//this is the logic required to finish the calc!! 
-//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
-//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
-//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
-//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
    
 if (operationInProcess === true) {
 
@@ -124,19 +122,15 @@ if (operationInProcess === true) {
 
 }
 else if(operationInProcess === false) {
-    // statusRegister = operator
+    
     logicAnswer = operate(yRegister, xRegister, statusRegister)
     statusRegister = operator
-    yRegister = logicAnswer;
+    yRegister = parseFloat(logicAnswer);
     document.getElementById("screenText").innerHTML = yRegister;
     operationInProcess = true
 
 }
   
-//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
-//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
-//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
-//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//
 }
 
 function equality() {
@@ -145,11 +139,12 @@ function equality() {
         return;
     }
   
-    let answer = operate(yRegister, parseInt(screenText), statusRegister);
+    let answer = operate(yRegister, parseFloat(screenText), statusRegister);
+    console.log(answer)
 
-    document.getElementById("screenText").innerHTML = answer;
+
+    document.getElementById("screenText").innerHTML = roundToTwo(answer);
     yRegister = answer;
-    console.log(`${yRegister}${xRegister}${statusRegister}`)
     operationInProcess = true;
 
     
@@ -175,4 +170,8 @@ function operate(x, y, operator) {
         
     }
     
+}
+
+function roundToTwo(num) {    
+    return +(Math.round(num + "e+10")  + "e-10");
 }
