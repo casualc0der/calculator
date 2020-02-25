@@ -1,4 +1,4 @@
-### Web Calculator
+### Web Calculator 📱
 
 * Designed to replicate the Apple iOS calculator as closely as possible
 * Operations will fire upon pressing an operator key, or the equals button
